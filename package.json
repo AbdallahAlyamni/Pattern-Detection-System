@@ -4,10 +4,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start:frontend": "cd ../frontend && npm start",
-    "start:backend": "cd ../backend && npm start",
-    "dev:frontend": "cd ../frontend && npm run dev",
-    "dev:backend": "cd ../backend && npm run dev",
+    "frontend:setup": "cd ./frontend && npm install",
+    "backend:setup": "cd ./backend && npm install",
+    "frontend:build": "cd ./frontend && npm run build",
+    "backend:build": "cd ./backend && npm run build",
+    "frontend:start": "cd ./frontend && npm start",
+    "backend:start": "cd ./backend && npm start",
+    "frontend:dev": "cd ./frontend && npm run dev",
+    "backend:dev": "cd ./backend && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

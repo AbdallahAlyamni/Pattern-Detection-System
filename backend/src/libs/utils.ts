@@ -1,4 +1,16 @@
-export function detectDoubleTop(data, tolerance = 0.02) {
+import yahooFinance from 'yahoo-finance2';
+
+export async function getStockData(ticker: string, fromDate: Date, toDate: Date) {
+  const queryOptions : any = {
+    period1: fromDate,
+    period2: toDate,
+    interval: '1d' // Use 1-day candles for analysis
+  };
+  const result = await yahooFinance.historical(ticker, queryOptions);
+  return result; // An array of daily candles
+}
+
+export function detectDoubleTop(data: any, tolerance = 0.02) {
   // We'll use "close" prices
   const prices = data.map(d => d.close);
 
@@ -7,7 +19,7 @@ export function detectDoubleTop(data, tolerance = 0.02) {
     return prices[i] > prices[i - 1] && prices[i] > prices[i + 1];
   }
 
-  let peaks = [];
+  let peaks : any = [];
   for (let i = 1; i < prices.length - 1; i++) {
     if (isPeak(i)) {
       peaks.push({ index: i, price: prices[i], date: data[i].date });
