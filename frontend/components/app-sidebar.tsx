@@ -33,7 +33,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { ListCheck } from "lucide-react"
+import { ListCheck, Shapes } from "lucide-react"
 
 const data = {
   user: {
@@ -43,9 +43,9 @@ const data = {
   },
   navMain: [
     {
-      title: "Tasks",
+      title: "Patterns",
       url: "#",
-      icon: IconListCheck,
+      icon: Shapes,
     },
     // {
     //   title: "Lifecycle",
@@ -164,7 +164,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <a href="#">
                 <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Project Management</span>
+                <span className="text-base font-semibold">Pattern Detection System</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
