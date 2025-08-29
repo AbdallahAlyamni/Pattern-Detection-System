@@ -1,0 +1,19 @@
+
+
+// function getCandidateBottoms(bottoms, tolerance) {
+//     const candidateBottoms = [];
+//     let i = 0;
+//     while (i < tops.length - 1) {
+//         const first = tops[i];
+//         const second = tops[i + 1];
+//         if (roughlyEqual(first.close, second.close, tolerance)) {
+//             candidateBottoms.push(first,second);
+//             i += 2;
+//         }
+//         else {
+//             i++;
+//         }
+//     }
+//     return candidateBottoms;
+// }
+

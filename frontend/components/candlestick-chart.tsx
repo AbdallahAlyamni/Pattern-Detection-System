@@ -59,7 +59,15 @@ export const ChartComponent: React.FC<ChartComponentProps> = (props) => {
       wickDownColor: "#ef5350",
     });
 
-    candlestickSeries.setData(data);
+    candlestickSeries.setData(
+      data.map((item) => ({
+        time: item.date.split("T")[0],
+        open: item.open,
+        high: item.high,
+        low: item.low,
+        close: item.close,
+      }))
+    );
 
     if (markers.length > 0) {
       createSeriesMarkers(candlestickSeries, markers);

@@ -26,7 +26,7 @@ export default function StockAnalysisForm({ onSubmit }: { onSubmit: (data: any) 
     resolver: zodResolver(formSchema),
     defaultValues: {
       ticker: "",
-      dateRange: { from: new Date(), to: new Date() },
+      dateRange: { from: new Date("2018-08-30"), to: new Date("2018-10-15") },
       patternType: undefined,
     },
   });
@@ -71,8 +71,8 @@ export default function StockAnalysisForm({ onSubmit }: { onSubmit: (data: any) 
 
                   <DateRangePicker
                     onUpdate={(values) => {console.log(values); field.onChange(values.range)}}
-                    initialDateFrom={new Date()}
-                    initialDateTo={new Date()}
+                    initialDateFrom={new Date("2018-08-30")}
+                    initialDateTo={new Date("2018-10-15")}
                     align="start"
                     locale="en-GB"
                     showCompare={false}

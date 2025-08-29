@@ -4,7 +4,7 @@ export async function getStockData(ticker, fromDate, toDate) {
   const queryOptions  = {
     period1: fromDate,
     period2: toDate,
-    interval: "1d" as "1d" // Use 1-day candles for analysis
+    interval: '1d' // Use 1-day candles for analysis
   };
   const result = await yahooFinance.historical(ticker, queryOptions);
   return result; // An array of daily candles
@@ -14,7 +14,7 @@ export function roughlyEqual(a, b, tolerance) {
     return Math.abs(a - b) <= tolerance;
 }
 
-export function getAllTops(data, window = null as any) {
+export function getAllTops(data, window = null) {
 
     if(window) return getTopsWithinWindow(data, window)
 
@@ -39,7 +39,7 @@ export function getAllBottoms(data, window = null) {
 }
 
 function getBottomsWithinWindow(data, window = 2) {
-    const bottoms : any = [];
+    const bottoms = [];
 
     for (let i = window; i < data.length - window; i++) {
         const point = data[i];
@@ -60,7 +60,7 @@ function getBottomsWithinWindow(data, window = 2) {
 }
 
 function getTopsWithinWindow(data, window = 2) {
-    const tops : any = [];
+    const tops = [];
 
     for (let i = window; i < data.length - window; i++) {
         const point = data[i];
