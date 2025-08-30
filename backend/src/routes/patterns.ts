@@ -3,8 +3,9 @@ import { getPatterns } from '../services/patternsService';
 
 export const patterns = Router();
 
-patterns.get('/', (_req, res) => {
-     res.json({ message: "fr" });
+patterns.get('/', async (_req, res) => {
+     const { data, patterns } =  await getPatterns({ ticker:"", fromDate:"fromDate", toDate:"toDate", patternType:"head-and-shoulders" });
+  res.status(200).json({data: [1], patterns: patterns});
 });
 
 patterns.post("/", async (req: Request, res: Response) => {
@@ -15,7 +16,7 @@ patterns.post("/", async (req: Request, res: Response) => {
   if (!ticker || !fromDate || !toDate || !patternType ) {
     return res.status(400).json({ message: "Ticker and dates are required" });
   }
-  const {data, patterns} =  await getPatterns({ ticker, fromDate, toDate });
+  const { data, patterns } =  await getPatterns({ ticker, fromDate, toDate, patternType });
   res.status(200).json({data: data, patterns: patterns});
 });
 

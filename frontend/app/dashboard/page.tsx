@@ -10,7 +10,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Loader } from "lucide-react";
 import { useState } from "react";
 import axios from "axios";
-import { BACKEND_BASE_URL } from "@/lib/utils";
+import { BACKEND_BASE_URL, createSeriesMarkers } from "@/lib/utils";
 
 export default function Page() {
   const [loading, setLoading] = useState(false);
@@ -54,10 +54,14 @@ export default function Page() {
               </div>
             ) : (
               <>
-                {patternsFound > 0 && (
+                {patternsFound > 0 ? (
                   <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6 m-4 p-8 border rounded-2xl">
                     <div className="text-lg font-semibold"> Patterns found {patternsFound}</div>
                     <ChartComponent data={data} markers={markers}></ChartComponent>
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6 m-4 p-8 border rounded-2xl">
+                    <div className="text-lg font-semibold text-center">No patterns found </div>
                   </div>
                 )}
               </>
@@ -67,55 +71,4 @@ export default function Page() {
       </SidebarInset>
     </SidebarProvider>
   );
-}
-
-function createSeriesMarkers(patternType: any, data: any[]) {
-  if (data.length === 0) return [];
-  let markers: any = [];
-  if (patternType == "double-top") {
-    data.forEach((pattern) => {
-      markers.push({
-        time: pattern.firstTop.date.split("T")[0],
-        position: "aboveBar",
-        color: "red",
-        shape: "arrowDown",
-        text: "Top 1",
-      });
-      markers.push({
-        time: pattern.secondTop.date.split("T")[0],
-        position: "aboveBar",
-        color: "red",
-        shape: "arrowDown",
-        text: "Top 2",
-      });
-      markers.push({
-        time: pattern.valley.date.split("T")[0],
-        position: "belowBar",
-        color: "blue",
-        shape: "arrowUp",
-        text: "Valley",
-      });
-      markers.push({
-        time: pattern.breakDown.date.split("T")[0],
-        position: "belowBar",
-        color: "blue",
-        shape: "arrowUp",
-        text: "Breakdown",
-      });
-    });
-    return markers;
-  } else if (patternType == "Head and Shoulders") {
-    return [
-      { time: data[0].time, position: "aboveBar", color: "red", shape: "arrowDown", text: "Left Shoulder" },
-      { time: data[1].time, position: "aboveBar", color: "red", shape: "arrowDown", text: "Head" },
-      { time: data[2].time, position: "aboveBar", color: "red", shape: "arrowDown", text: "Right Shoulder" },
-    ];
-  } else if (patternType == "Triple Bottom") {
-    return [
-      { time: data[0].time, position: "belowBar", color: "blue", shape: "arrowUp", text: "Bottom 1" },
-      { time: data[1].time, position: "belowBar", color: "blue", shape: "arrowUp", text: "Bottom 2" },
-      { time: data[2].time, position: "belowBar", color: "blue", shape: "arrowUp", text: "Bottom 3" },
-    ];
-  }
-  return [];
 }
