@@ -85,7 +85,7 @@ You can use the following data to test the system:
 * **Double Tops**
 
   ```js
-  {ticker: 'AMZN', fromDate: new Date('2018-08-14'), toDate: new Date('2025-10-10')}
+  {ticker: 'AMZN', fromDate: new Date('2018-08-14'), toDate: new Date('2018-10-10')}
   ```
 
 * **Triple Bottoms**
