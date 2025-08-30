@@ -33,17 +33,10 @@ export function detectTripleBottoms(data, bottoms, tops) {
             biggestTopBetween1 = biggestTopBetween1.close > top.close ? biggestTopBetween1 : top;
         })
 
-        console.log('biggestTopBetween1', biggestTopBetween1)
-
         let biggestTopBetween2 = topsBetween2[0];
         topsBetween2.forEach((top) => {
             biggestTopBetween2 = biggestTopBetween2.close > top.close ? biggestTopBetween2 : top;
         })
-
-        console.log('biggestTopBetween2', biggestTopBetween2)
-
-        // TODO:
-        // biggestTopBetween1 and biggestTopBetween2 most be roughly equall
 
         // Break down
         const biggestCloseAfter = data.find(item => {

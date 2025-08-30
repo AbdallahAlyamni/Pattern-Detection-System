@@ -1,25 +1,3 @@
-import { DOUBLE_TOPS_DATA } from './data';
-import { getStockData, roughlyEqual, getAllTops, getAllBottoms } from './utils';
-
-const results = DOUBLE_TOPS_DATA;
-
-export function getCandidateTops(tops, tolerance) {
-    const topsSet : any = new Set(tops);
-    const candidateTops : any = [];
-
-    for (const top1 of topsSet) {
-        for (const top2 of topsSet) {
-            if (top1 == top2) continue;
-            if (roughlyEqual(top1.close, top2.close, tolerance)) {
-                candidateTops.push(top1, top2);
-                topsSet.delete(top1);
-                topsSet.delete(top2);
-            }
-        }
-    }
-
-    return candidateTops;
-}
 
 export function detectDoubleTops(data, tops, bottoms) {
     let i = 0;

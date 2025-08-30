@@ -21,7 +21,14 @@ export default function Page() {
   async function onSubmit(values: any) {
     setLoading(true);
     const patternType = values["patternType"];
-    const response = await axios.post(`${BACKEND_BASE_URL}/api/patterns`, values);
+    const response = await axios.get(`${BACKEND_BASE_URL}/api/patterns`, {
+      params: {
+        ticker: values["ticker"],
+        fromDate: values["dateRange"]["from"],
+        toDate: values["dateRange"]["to"],
+        patternType: values["patternType"],
+      },
+    });
     if (!response || response.status !== 200) {
       setLoading(false);
       return;

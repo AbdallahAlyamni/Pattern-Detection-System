@@ -38,15 +38,13 @@ export function detectHeadAndShoulder(data, tops, bottoms) {
             smallestBottomBetween2 = smallestBottomBetween2.close < bottom.close ? smallestBottomBetween2 : bottom;
         })
 
-        // smallestBottomBetween1 and smallestBottomBetween2 most be roughly equall
-
         // Break down
         const smallestCloseAfter = data.find(item => {
             const topDate = new Date(item.date);
             return (topDate > new Date(secondShoulder.date) && item.close <= smallestBottomBetween2.close)
         });
 
-        if (smallestCloseAfter != null) {
+        if (smallestCloseAfter != null && (head.close > firstShoulder.close && head.close > secondShoulder.close)) {
             patterns.push({ firstShoulder: firstShoulder, head: head, secondShoulder: secondShoulder, firstValley: smallestBottomBetween1, secondValley: smallestBottomBetween2, breakDown: smallestCloseAfter });
         }
 
