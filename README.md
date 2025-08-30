@@ -1,4 +1,7 @@
 # Full-Stack Pattern Detection System
+<p align="center">
+  <img src="https://i.ibb.co/Df8QLBC3/Screenshot-2025-08-30-165633.png" alt="Candlestick Chart" width="600"/>
+</p>
 
 A full-stack application that detects stock chart patterns within a given **ticker** and **date range**.
 Currently supported patterns include:
